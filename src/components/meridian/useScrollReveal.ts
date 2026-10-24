@@ -11,7 +11,6 @@ const revealTargets = [
   '.mb-pricing-card',
   '.mb-provider-cards > article',
   '.mb-expectations',
-  '.mb-about > img',
   '.mb-contact > .mb-contact-copy',
 ].join(', ')
 

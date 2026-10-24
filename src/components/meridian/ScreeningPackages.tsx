@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import { Button } from '../ui/Button'
 import { Icon } from './Shared'
 import { screeningPackages, type ScreeningPackage } from './screeningPackageData'
+import { MobileCardRail } from './MobileCardRail'
 
 function ScreeningPackageCard({ screeningPackage }: { screeningPackage: ScreeningPackage }) {
   const [expanded, setExpanded] = useState(false)
@@ -55,9 +56,9 @@ export function ScreeningPackages() {
         <h3 id={headingId}>Screening package options</h3>
         <p>Different providers offer different packages. Typical options include:</p>
       </div>
-      <div className="mb-package-grid">
+      <MobileCardRail name="packages" className="mb-package-grid" label="Screening packages">
         {screeningPackages.map(screeningPackage => <ScreeningPackageCard key={screeningPackage.id} screeningPackage={screeningPackage} />)}
-      </div>
+      </MobileCardRail>
       <p className="mb-package-note">Package contents and prices vary by provider. These are illustrative options, not a personalized medical recommendation. Confirm test suitability with a qualified clinician and request a quote before booking. Meridian Bridge’s facilitation fee is separate.</p>
     </section>
   )

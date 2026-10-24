@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '../ui/Button'
-import { ActionLink, Brand, Icon } from './Shared'
+import { ActionLink, Brand } from './Shared'
 import { asset, capabilities, consultationUrl, inquiryUrl, navigation } from './design'
 import { BrandPattern } from './BrandPattern'
 import { useActiveSection } from './useActiveSection'
@@ -37,7 +37,7 @@ export function SiteHeader() {
   }, [menuOpen])
   return (
     <header className="mb-header" ref={headerRef}>
-      <Brand />
+      <Brand tone="ivory" />
       <Button className="mb-menu-toggle" aria-expanded={menuOpen} aria-controls="meridian-nav"
         aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         onClick={() => setMenuOpen(open => !open)}>
@@ -54,34 +54,24 @@ export function SiteHeader() {
         <a className="mb-mobile-consultation" href={consultationUrl} target="_blank" rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}>Book a Free Consultation <span aria-hidden="true">↗</span></a>
       </nav>
-      <a className="mb-header-cta" href={consultationUrl} target="_blank" rel="noopener noreferrer">Book a Free 15min Consultation</a>
+      <a className="mb-header-cta" href={consultationUrl} target="_blank" rel="noopener noreferrer">Book a Free 20min Consultation</a>
     </header>
   )
 }
 
 export function Hero() {
-  const trust = [
-    ['caaaa.svg', 'Canadian-led and accountable'],
-    ['af9a0.svg', 'Carefully vetted providers'],
-    ['9295a.svg', 'Transparent pricing'],
-    ['734d2.svg', 'English, Mandarin & Cantonese support'],
-  ]
   return (
-    <>
-      <section className="mb-hero" aria-labelledby="meridian-title">
-        <img className="mb-hero-image" src={asset('guangzhou-lounge.jpg')} alt="A sunlit lounge overlooking the Pearl River and Guangzhou skyline at golden hour" width="1920" height="640" fetchPriority="high" />
-        <div className="mb-hero-copy">
-          <p className="mb-eyebrow">World class diagnostics. A different kind of journey.</p>
-          <h1 id="meridian-title">Your health has<br />been waiting<br /><em>long enough.</em></h1>
-          <p>Access comprehensive health screenings and diagnostic testing in China, with Meridian Bridge handling the coordination from Canada.</p>
-          <div className="mb-actions">
-            <ActionLink>Book a Free 15 min Consultation</ActionLink>
-            <ActionLink href={inquiryUrl} variant="mb-action-light" icon="8e1e6.svg">Send an Inquiry</ActionLink>
-          </div>
+    <section className="mb-hero" aria-labelledby="meridian-title">
+      <img className="mb-hero-image" src={asset('guangzhou-lounge.jpg')} alt="A sunlit lounge overlooking the Pearl River and Guangzhou skyline at golden hour" width="1920" height="640" fetchPriority="high" />
+      <div className="mb-hero-copy">
+        <h1 id="meridian-title">Your health has<br />been waiting<br /><em>long enough.</em></h1>
+        <p>Access comprehensive health screenings and diagnostic testing in China, with Meridian Bridge handling the coordination from Canada.</p>
+        <div className="mb-actions">
+          <ActionLink>Book a Free 20 min Consultation</ActionLink>
+          <ActionLink href={inquiryUrl} variant="mb-action-light" icon="8e1e6.svg">Send an Inquiry</ActionLink>
         </div>
-      </section>
-      <div className="mb-trust">{trust.map(([icon, label]) => <div key={label}><Icon name={icon} /><span>{label}</span></div>)}</div>
-    </>
+      </div>
+    </section>
   )
 }
 
@@ -89,7 +79,8 @@ export function PatientContext() {
   return (
     <section className="mb-patient-context" aria-label="International patient context">
       <BrandPattern />
-      <div>
+      <img className="mb-context-image" src={asset('checkup-consultation.webp')} alt="A doctor taking a patient’s blood pressure in a consultation room overlooking Guangzhou" width="2000" height="667" loading="lazy" decoding="async" />
+      <div className="mb-context-stats">
         <div className="mb-metrics">
           <div><strong>1.28 million</strong><p>international patient visits were recorded at China’s key foreign-facing hospitals in 2025.</p></div>
           <div><strong>+73.6%</strong><p>in foreign visits to Chinese hospitals in three years.</p></div>

@@ -1,47 +1,75 @@
-import { ActionLink, FeatureGrid, Icon, SectionHeading } from './Shared'
-import { asset, comparisons, expectations, processSteps, providers, screeningTests } from './design'
+import type { MouseEvent } from 'react'
+import { ActionLink, ContentDialog, CountrySelect, FeatureGrid, Icon, SectionHeading } from './Shared'
+import { asset, comparisons, countries, expectations, processSteps, providers, screeningTests, type CountryCode } from './design'
 import { ScreeningPackages } from './ScreeningPackages'
+import { MobileCardRail } from './MobileCardRail'
+import { FounderStory } from './FounderStory'
 
-function CountryCell({ canada, wait, cost }: { canada?: boolean; wait: string; cost: string }) {
+function CountryCell({ home, wait, cost }: { home?: string; wait: string; cost: string }) {
   return (
-    <div className={`mb-country${canada ? ' mb-country-canada' : ''}`}>
-      <strong>{canada ? 'In Canada' : 'In China'}</strong>
-      <p className="mb-country-label"><Icon name={canada ? 'e69fe.svg' : '6b9ed.svg'} />Wait time</p>
+    <div className={`mb-country${home ? ' mb-country-home' : ''}`}>
+      <strong aria-live={home ? 'polite' : undefined}>{home ? `In ${home}` : 'In China'}</strong>
+      <p className="mb-country-label"><Icon name={home ? 'e69fe.svg' : '6b9ed.svg'} />Wait time</p>
       <p>{wait}</p>
       <hr />
-      <p className="mb-country-label"><Icon name={canada ? '11c05.svg' : '3436b.svg'} />Cost</p>
+      <p className="mb-country-label"><Icon name={home ? '11c05.svg' : '3436b.svg'} />Cost</p>
       <p>{cost}</p>
     </div>
   )
 }
 
-export function WhyChina() {
+type CountryProps = { country: CountryCode; onCountryChange: (country: CountryCode) => void }
+
+export function WhyChina({ country, onCountryChange }: CountryProps) {
+  const homeName = countries.find(({ code }) => code === country)?.name ?? 'Canada'
   return (
     <section id="why-china" className="mb-section mb-why">
-      <SectionHeading eyebrow="Why China" title="Why China is becoming the destination?">
+      <SectionHeading title="Why China is becoming the destination?" aside={<CountrySelect country={country} onChange={onCountryChange} />}>
         Shorter wait times, more accessible pricing, and access to comprehensive screening.
       </SectionHeading>
-      <div className="mb-comparisons">
+      <MobileCardRail name="comparisons" className="mb-comparisons" label="Treatment comparisons">
         {comparisons.map((item, index) => (
           <article key={item.title}>
             <h3><Icon name={item.icon} />{item.title}</h3>
             <div className={`mb-comparison-body mb-comparison-${index}`}>
-              <div className="mb-comparison-image"><img src={asset(item.image)} alt={item.title.replace(' *', '')} loading="lazy" /></div>
+              <div className="mb-comparison-image"><img src={asset(item.image)} alt={item.imageAlt} width={item.imageWidth} height={item.imageHeight} loading="lazy" decoding="async" /></div>
               <CountryCell wait="Typically 1 – 7 days" cost="From ~$100 USD (¥700+)" />
-              <CountryCell canada wait={item.wait} cost={item.cost} />
+              <CountryCell home={homeName} {...item.home[country]} />
             </div>
           </article>
         ))}
-      </div>
+      </MobileCardRail>
       <p className="mb-footnote">* Prices and wait times are approximate and may vary by provider and location. China pricing reflects private clinic rates in major cities.</p>
     </section>
   )
 }
 
+function showAlreadyGoingPricing(event: MouseEvent<HTMLAnchorElement>) {
+  const card = document.getElementById('pricing-already-going')
+  if (!card) return
+  event.preventDefault()
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  card.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' })
+  history.replaceState(null, '', '#pricing')
+  if (reducedMotion) return
+  let done = false
+  function pulse() {
+    if (done || !card) return
+    done = true
+    window.removeEventListener('scrollend', pulse)
+    card.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(1.035)', offset: .4 }, { transform: 'scale(1)' }],
+      { duration: 900, easing: 'cubic-bezier(.22, 1, .36, 1)' },
+    )
+  }
+  window.addEventListener('scrollend', pulse, { once: true })
+  window.setTimeout(pulse, 1100)
+}
+
 export function HowItWorks() {
   return (
     <section id="how-it-works" className="mb-section mb-process">
-      <SectionHeading eyebrow="Your next steps" title="How it works">A clear, straightforward process from first question to follow-up.</SectionHeading>
+      <SectionHeading title="How it works">A clear, straightforward process from first question to follow-up.</SectionHeading>
       <div className="mb-steps">
         {processSteps.map(([number, title, text]) => (
           <article key={number}>
@@ -49,13 +77,25 @@ export function HowItWorks() {
             <div className="mb-step-copy"><h3>{title}</h3><p>{text}</p></div>
           </article>
         ))}
+        <article className="mb-meet-gordon">
+          <img src={asset('gordon-zhang.jpeg')} alt="Gordon Zhang, founder of Meridian Bridge" width="800" height="800" loading="lazy" />
+          <div className="mb-step-copy">
+            <p className="mb-meet-question">Who will I be speaking to?</p>
+            <h3>Meet Gordon</h3>
+            <p>Your consultation is with Gordon Zhang, our founder. He has personally vetted our partner hospitals and has been through the screening himself.</p>
+            <ContentDialog title="Gordon, the Founder" label="Read Gordon’s story" icon="e1e40.svg">
+              <FounderStory />
+              <ActionLink>Book a Free Consultation</ActionLink>
+            </ContentDialog>
+          </div>
+        </article>
       </div>
       <div className="mb-travel">
         <div>
           <h2>Already going to China?</h2>
           <p className="mb-travel-subtitle">Make the screening part of your trip</p>
           <p>Many screening packages can be completed in a <strong>single morning,</strong> making it easy to include a full health check during a family visit, business trip or vacation.</p>
-          <ActionLink variant="mb-action-sand" icon="efa88.svg">Add a screening to your trip</ActionLink>
+          <ActionLink href="#pricing" variant="mb-action-sand" icon="efa88.svg" onClick={showAlreadyGoingPricing}>Add a screening to your trip</ActionLink>
         </div>
         <img src={asset('145ea.png')} alt="Traditional Chinese pavilion and gardens beside a lake" loading="lazy" />
       </div>
@@ -66,7 +106,7 @@ export function HowItWorks() {
 export function HealthScreening() {
   return (
     <section id="screening" className="mb-section mb-screening">
-      <SectionHeading eyebrow="Understand your options" title="What is a complete health check?" />
+      <SectionHeading title="What is a complete health check?" />
       <div className="mb-screening-layout">
         <article className="mb-screening-card">
           <h3>What can it include?</h3>
@@ -82,7 +122,7 @@ export function HealthScreening() {
 export function ProviderNetwork() {
   return (
     <section id="providers" className="mb-section mb-providers">
-      <SectionHeading eyebrow="Carefully selected care" title="Our provider network">
+      <SectionHeading title="Our provider network">
         A thoughtfully curated network of established hospitals and healthcare providers in Guangdong.
       </SectionHeading>
       <div className="mb-provider-cards">

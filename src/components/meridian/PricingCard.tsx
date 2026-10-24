@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { Button } from '../ui/Button'
 import { Icon } from './Shared'
+import { countries, type CountryCode } from './design'
 
 const feeInclusions = [
   'Provider and package research',
@@ -11,14 +12,15 @@ const feeInclusions = [
   'Results and follow-up coordination',
 ]
 
-export function PricingCard({ scenario }: { scenario: 'travelling' | 'already-going' }) {
+export function PricingCard({ scenario, country }: { scenario: 'travelling' | 'already-going'; country: CountryCode }) {
   const [feeExpanded, setFeeExpanded] = useState(false)
+  const home = countries.find(({ code }) => code === country) ?? countries[0]
   const panelId = useId()
   const headingId = `${panelId}-heading`
   const alreadyGoing = scenario === 'already-going'
   return (
     <article className={`mb-pricing-card${feeExpanded ? ' mb-pricing-card-expanded' : ''}`}
-      data-scenario={scenario} aria-labelledby={headingId}
+      id={alreadyGoing ? 'pricing-already-going' : undefined} data-scenario={scenario} aria-labelledby={headingId}
       onKeyDown={event => { if (event.key === 'Escape') setFeeExpanded(false) }}>
       <h3 id={headingId}>{alreadyGoing ? 'I’m already going to China' : 'I’m travelling to China specifically for the health screening'}</h3>
       {alreadyGoing && <p className="mb-pricing-subtitle">(add the screening to my trip)</p>}
@@ -49,7 +51,7 @@ export function PricingCard({ scenario }: { scenario: 'travelling' | 'already-go
         {!feeExpanded && (
           <>
             {!alreadyGoing && <dl className="mb-travel-costs">
-              <div><dt>Flights (from Canada, est.)</dt><dd>~$800 – $1,200 CAD</dd></div>
+              <div><dt>Flights (from {home.name}, est.)</dt><dd>{home.flights}</dd></div>
               <div><dt>Accommodation (2–3 nights)</dt><dd>~$300 – $600 USD</dd></div>
               <div><dt>Local transport & meals</dt><dd>~$100 – $300 USD</dd></div>
             </dl>}
@@ -62,7 +64,9 @@ export function PricingCard({ scenario }: { scenario: 'travelling' | 'already-go
       </div>
       <p className="mb-pricing-note">{alreadyGoing
         ? 'Includes the illustrative screening package and $400 USD facilitation fee only. Existing travel costs and any extra tests or services are not included. Confirm your personalized quote before booking.'
-        : 'Amounts are illustrative, not a quote. Flights are shown in CAD; other items are in USD. Convert all costs to one currency using current exchange rates before adding them. Provider prices, travel costs, and availability may change.'}</p>
+        : home.currency === 'USD'
+          ? 'Amounts are illustrative, not a quote. All amounts are shown in USD. Provider prices, travel costs, and availability may change.'
+          : `Amounts are illustrative, not a quote. Flights are shown in ${home.currency}; other items are in USD. Convert all costs to one currency using current exchange rates before adding them. Provider prices, travel costs, and availability may change.`}</p>
     </article>
   )
 }

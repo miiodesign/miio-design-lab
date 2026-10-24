@@ -7,7 +7,7 @@
   --mb-sand: #cbc0ae;
   --mb-ink: #26231b;
   --mb-muted: #65675e;
-  --mb-paper: #f7f6f2;
+  --mb-paper: var(--mb-ivory);
   --mb-pale: #e9ede5;
   --mb-gold: #d49c57;
   --mb-serif: 'EB Garamond', Georgia, serif;
@@ -37,7 +37,7 @@
 .mb-brand span { display: grid; width: 84px; text-align: center; }
 .mb-brand strong { font: 700 17px/15px var(--mb-serif); }
 .mb-brand small { font-size: 11px; line-height: 15px; letter-spacing: 3.8px; }
-.mb-header nav { display: flex; align-items: center; justify-content: center; gap: 23px; min-height: 52px; padding: 12px 22px; background: #f7f6f280; border-radius: 4px; font-size: 14px; }
+.mb-header nav { display: flex; align-items: center; justify-content: center; gap: 23px; min-height: 52px; padding: 12px 22px; background: #dbd9cf80; border-radius: 4px; font-size: 14px; }
 .mb-header nav a { white-space: nowrap; }
 .mb-header nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
 .mb-header nav .mb-mobile-consultation { display: none; }
@@ -45,7 +45,7 @@
 .mb-menu-toggle.button { display: none; }
 .mb-hero { position: relative; min-height: 559px; overflow: hidden; }
 .mb-hero-image { position: absolute; width: 100%; height: 670px; object-fit: cover; top: 0; left: 0; }
-.mb-hero::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 73%; background: linear-gradient(90deg, #f7f6f2f5, #f7f6f2a8 70%, #f7f6f200); }
+.mb-hero::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 73%; background: linear-gradient(90deg, #dbd9cff5, #dbd9cfa8 70%, #dbd9cf00); }
 .mb-hero-copy { position: relative; z-index: 1; padding: 47px max(24px, calc((100% - 1280px) / 2)); display: grid; justify-items: start; gap: 28px; }
 .mb-hero h1 { font: 500 72px/1.08 var(--mb-serif); }
 .mb-hero h1 em { font-weight: 600; color: var(--mb-jade); }
@@ -54,7 +54,7 @@
 .mb-action { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 52px; padding: 12px 22px; border: 1px solid transparent; border-radius: 4px; background: var(--mb-evergreen); color: var(--mb-paper); font-weight: 600; }
 .mb-action:hover { filter: brightness(1.12); }
 .mb-hero .mb-action { min-width: 345px; }
-.mb-action-light { background: #f7f6f2f5; color: var(--mb-evergreen); }
+.mb-action-light { background: #dbd9cff5; color: var(--mb-evergreen); }
 .mb-action-sand { background: var(--mb-sand); color: var(--mb-ink); border-color: var(--mb-ivory); }
 .mb-action-inverse { border-color: var(--mb-ivory); }
 .mb-trust { display: grid; grid-template-columns: 1.15fr 1.05fr .9fr 1.4fr; gap: 24px; padding: 38px max(24px, calc((100% - 1280px) / 2)); background: var(--mb-evergreen); color: var(--mb-sand); }
@@ -82,9 +82,9 @@
 .mb-country .mb-country-label { display: flex; align-items: center; gap: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
 .mb-country p { line-height: 1.4; }
 .mb-country hr { border: 0; height: 1px; background: #accdab; margin: 12px 0; }
-.mb-country-canada { background: var(--mb-sand); color: var(--mb-ink); }
-.mb-country-canada > strong { color: var(--mb-muted); }
-.mb-country-canada hr { background: var(--mb-pale); }
+.mb-country-home { background: var(--mb-sand); color: var(--mb-ink); }
+.mb-country-home > strong { color: var(--mb-muted); }
+.mb-country-home hr { background: var(--mb-pale); }
 .mb-footnote { color: var(--mb-muted); font-size: 13px; margin: 22px 32px 0; }
 .mb-process { background: var(--mb-sand); }
 .mb-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; margin-top: 12px; }
@@ -103,7 +103,7 @@
 .mb-pricing .mb-eyebrow { color: var(--mb-gold); }
 .mb-pricing h2 { color: var(--mb-sand); }
 .mb-pricing .mb-section-heading > p:not(.mb-eyebrow) { color: var(--mb-ivory); }
-.mb-pricing-card { background: white; border: 1px solid #daddd4; border-radius: 3px; padding: 28px; }
+.mb-pricing-card { background: var(--mb-ivory); border: 1px solid #daddd4; border-radius: 3px; padding: 28px; }
 .mb-pricing-card h3 { font: 500 28px/1.08 var(--mb-serif); }
 .mb-pricing-card dl { display: grid; gap: 14px; margin: 24px 0; }
 .mb-pricing-card dl > div { border-bottom: 1px solid #daddd4; padding-bottom: 14px; }
@@ -139,9 +139,9 @@
 .mb-screening-card > p { color: var(--mb-muted); }
 .mb-screening-card ul { list-style: none; padding: 0; display: grid; gap: 16px; margin: 22px 0 0; }
 .mb-screening-card li { display: flex; align-items: flex-start; gap: 14px; color: var(--mb-jade); line-height: 1.5; }
-.mb-providers { background: #f7f6f2f5; padding-top: 96px; }
+.mb-providers { background: #dbd9cff5; padding-top: 96px; }
 .mb-provider-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
-.mb-provider-cards article { background: white; border: 1px solid #daddd4; border-radius: 8px; overflow: hidden; }
+.mb-provider-cards article { background: var(--mb-ivory); border: 1px solid #daddd4; border-radius: 8px; overflow: hidden; }
 .mb-provider-cards article > img { display: block; width: 100%; height: 210px; object-fit: cover; }
 .mb-provider-cards article > div { padding: 24px; }
 .mb-provider-cards h3 { font: 500 28px/1.08 var(--mb-serif); margin-bottom: 12px; }
@@ -155,7 +155,7 @@
 .mb-about-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding-top: 96px; background: var(--mb-pale); }
 .mb-about-questions h2 { font-size: 42px; }
 .mb-faq { margin-top: 24px; }
-.mb-faq details { padding: 22px 0; border-bottom: 1px solid white; }
+.mb-faq details { padding: 22px 0; border-bottom: 1px solid var(--mb-ivory); }
 .mb-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; font-size: 18px; font-weight: 600; line-height: 1.4; }
 .mb-faq summary::-webkit-details-marker { display: none; }
 .mb-faq details[open] summary .mb-icon { transform: rotate(45deg); }
@@ -247,7 +247,7 @@
   .mb-hero h1 { font-size: clamp(46px, 12vw, 64px); line-height: 1.02; letter-spacing: -.7px; }
   .mb-hero-copy > .mb-eyebrow { max-width: 290px; }
   .mb-hero-copy > p:not(.mb-eyebrow) { max-width: 440px; font-size: 17px; }
-  .mb-hero::after { width: 100%; background: linear-gradient(180deg, var(--mb-paper) 0%, #f7f6f2f5 48%, #f7f6f2cc 65%, #f7f6f200 90%); }
+  .mb-hero::after { width: 100%; background: linear-gradient(180deg, var(--mb-paper) 0%, #dbd9cff5 48%, #dbd9cfcc 65%, #dbd9cf00 90%); }
   .mb-hero-image { height: 56%; top: auto; bottom: 0; object-position: 65% center; }
   .mb-hero .mb-actions, .mb-hero .mb-action { width: 100%; min-width: 0; }
   .mb-action { gap: 10px; padding: 14px 16px; line-height: 1.4; text-align: center; }

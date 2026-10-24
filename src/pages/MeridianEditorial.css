@@ -13,20 +13,23 @@
 .meridian a, .meridian button, .meridian summary { -webkit-tap-highlight-color: transparent; }
 .meridian :is(a, button, summary):focus-visible { outline: 2px solid var(--mb-gold); outline-offset: 5px; }
 
-.meridian .mb-header { min-height: 92px; padding: 20px var(--mb-gutter); gap: 28px; background: var(--mb-ivory); border-bottom: var(--mb-rule); }
+.meridian .mb-header { min-height: 92px; padding: 20px var(--mb-gutter); gap: 28px; background: var(--mb-ink); color: var(--mb-ivory); border-bottom: 1px solid var(--mb-ink); }
 .meridian .mb-header nav { background: transparent; border-radius: 0; padding: 0; gap: 4px; font-size: 13px; }
 .meridian .mb-header nav a { position: relative; padding: 10px; text-decoration: none; }
 .meridian .mb-header nav a::after { position: absolute; content: ''; height: 1px; background: currentColor; bottom: 5px; left: 0; right: 0; transform: scaleX(0); transform-origin: left; }
 .meridian .mb-header nav a:is(:hover, :focus-visible)::after { transform: scaleX(1); }
-.meridian .mb-header nav a[aria-current="location"] { background: var(--mb-evergreen); color: var(--mb-paper); }
+.meridian .mb-header nav a[aria-current="location"] { background: var(--mb-evergreen); color: var(--mb-ivory); }
 .meridian .mb-header nav a[aria-current="location"]:is(:hover, :focus-visible) { background: var(--mb-jade); color: var(--mb-paper); }
 .meridian .mb-header nav a[aria-current="location"]::after { display: none; }
-.meridian .mb-header-cta { border: 1px solid var(--mb-evergreen); border-radius: 0; background: transparent; color: var(--mb-evergreen); padding: 15px 18px; font-size: 13px; font-weight: 600; }
-.meridian .mb-header-cta:is(:hover, :focus-visible) { background: var(--mb-evergreen); color: var(--mb-paper); }
+.meridian .mb-header-cta { border: 1px solid var(--mb-ivory); border-radius: 0; background: transparent; color: var(--mb-ivory); padding: 15px 18px; font-size: 13px; font-weight: 600; }
+.meridian .mb-header-cta:is(:hover, :focus-visible) { background: var(--mb-ivory); color: var(--mb-ink); }
 .meridian .mb-brand { position: relative; }
 .meridian .mb-brand::after { position: absolute; content: ''; bottom: -8px; height: 1px; left: 0; right: 0; background: var(--mb-evergreen); transform: scaleX(0); transform-origin: left; }
 .meridian .mb-brand:is(:hover, :focus-visible)::after { transform: scaleX(1); }
-.meridian .mb-menu-toggle.button:is(:hover, :focus-visible) { background: var(--mb-sand); color: var(--mb-evergreen); }
+.meridian .mb-header .mb-brand { color: var(--mb-ivory); }
+.meridian .mb-header .mb-brand::after { background: var(--mb-ivory); }
+.meridian .mb-header .mb-menu-toggle.button { color: var(--mb-ivory); border-color: color-mix(in srgb, var(--mb-ivory) 40%, transparent); }
+.meridian .mb-header .mb-menu-toggle.button:is(:hover, :focus-visible) { background: var(--mb-ivory); color: var(--mb-ink); }
 
 .meridian .mb-hero { position: relative; isolation: isolate; background: var(--mb-paper); min-height: 720px; display: grid; grid-template-columns: 1fr; }
 .meridian .mb-hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center; }
@@ -44,7 +47,7 @@
 .meridian .mb-action .mb-icon { transform: translateX(0); }
 .meridian .mb-action:is(:hover, :focus-visible) .mb-icon { transform: translateX(3px); }
 .meridian .mb-action-light { background: transparent; color: var(--mb-evergreen); }
-.meridian .mb-action-light:is(:hover, :focus-visible) { background: var(--mb-ivory); color: var(--mb-evergreen); }
+.meridian .mb-action-light:is(:hover, :focus-visible) { background: var(--mb-sand); color: var(--mb-evergreen); }
 .meridian .mb-action-sand { background: var(--mb-sand); color: var(--mb-ink); border-color: var(--mb-sand); }
 .meridian .mb-action-sand:is(:hover, :focus-visible) { background: var(--mb-ivory); color: var(--mb-ink); border-color: var(--mb-ivory); }
 .meridian .mb-action-inverse { background: transparent; color: var(--mb-paper); border-color: var(--mb-sand); }
@@ -75,14 +78,14 @@
 .meridian .mb-comparison-1 .mb-comparison-image img,
 .meridian .mb-comparison-2 .mb-comparison-image img { width: 100%; height: 100%; left: 0; top: 0; object-fit: cover; object-position: center; }
 .meridian .mb-country { padding: 20px; font-size: 14px; background: var(--mb-pale); }
-.meridian .mb-country-canada { background: var(--mb-sand); }
+.meridian .mb-country-home { background: var(--mb-sand); }
 .meridian .mb-country > strong { font-size: 11px; letter-spacing: .08em; margin-bottom: 20px; }
 .meridian .mb-country .mb-country-label { font-size: 10px; letter-spacing: .08em; }
 .meridian .mb-footnote { margin: 24px 0 0; max-width: 760px; font-size: 12px; }
 .meridian .mb-process { background: var(--mb-paper); }
 .meridian .mb-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 32px; margin-top: 52px; }
 .meridian .mb-steps article { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: start; gap: 16px; border-top: var(--mb-rule); padding: 24px 0 0; }
-.meridian .mb-steps article > .mb-step-number { position: static; color: var(--mb-ivory); font: 400 88px/.95 var(--mb-serif); margin: 0; letter-spacing: -.04em; }
+.meridian .mb-steps article > .mb-step-number { position: static; color: var(--mb-sand); font: 400 88px/.95 var(--mb-serif); margin: 0; letter-spacing: -.04em; }
 .meridian .mb-step-copy { padding-top: 4px; }
 .meridian .mb-steps h3 { font-size: 18px; line-height: 1.3; font-weight: 600; margin-bottom: 12px; }
 .meridian .mb-steps p { font-size: 16px; }
@@ -110,6 +113,7 @@
 .meridian .mb-pricing-card[data-scenario="already-going"] .mb-total { margin-top: 24px; }
 .meridian .mb-pricing-card h3 br { display: none; }
 .meridian .mb-fee-toggle.button { min-height: 44px; padding: 12px; font-size: 12px; border-radius: 0; }
+.meridian .mb-fee-toggle.button:is(:hover, :focus-visible, [aria-expanded="true"]) { background: var(--mb-sand); color: var(--mb-evergreen); }
 .meridian .mb-facilitation-panel, .meridian .mb-total { border-radius: 0; }
 .meridian .mb-fee-card-content { min-height: 0; }
 .meridian .mb-total strong { font-size: 21px; }
@@ -187,7 +191,8 @@
 }
 @media (max-width: 1050px) {
   .meridian .mb-header { min-height: 88px; }
-  .meridian .mb-header nav { padding: 12px 32px 24px; background: var(--mb-paper); gap: 0; }
+  .meridian .mb-header nav { padding: 12px 32px 24px; background: var(--mb-ink); gap: 0; border-bottom-color: var(--mb-ink); }
+  .meridian .mb-header nav a { border-bottom-color: color-mix(in srgb, var(--mb-ivory) 16%, transparent); }
   .meridian .mb-header nav a { padding: 16px 12px; }
   .meridian .mb-header nav a::after { right: auto; width: 40px; bottom: 10px; }
   .meridian .mb-header nav .mb-mobile-consultation { border-radius: 0; padding: 16px 20px; }
@@ -300,4 +305,50 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .meridian *, .meridian *::before, .meridian *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Sections that now share the ivory background */
+.meridian .mb-screening, .meridian .mb-about-questions { border-top: var(--mb-rule); }
+
+/* Country comparison select */
+.meridian .mb-country-select { display: inline-flex; align-items: center; gap: 12px; width: fit-content; font-size: 13px; color: var(--mb-muted); }
+.meridian .mb-country-select label { font-weight: 600; letter-spacing: .02em; }
+.meridian .mb-country-select-field { position: relative; display: inline-flex; align-items: center; color: var(--mb-evergreen); }
+.meridian .mb-country-select select { appearance: none; min-height: 40px; margin: 0; padding: 8px 36px 8px 14px; border: 1px solid var(--mb-sand); border-radius: 0; background: transparent; color: inherit; font: 600 14px/1.3 'Source Sans Pro', sans-serif; cursor: pointer; }
+.meridian .mb-country-select select:hover { border-color: currentColor; }
+.meridian .mb-country-select select:focus-visible { outline: 2px solid var(--mb-gold); outline-offset: 3px; }
+.meridian .mb-country-select svg { position: absolute; right: 13px; pointer-events: none; }
+.meridian .mb-country-select option { color: var(--mb-ink); background: var(--mb-ivory); }
+.meridian .mb-pricing .mb-country-select { color: var(--mb-sand); }
+.meridian .mb-pricing .mb-country-select-field { color: var(--mb-ivory); }
+.meridian .mb-pricing .mb-country-select select { border-color: color-mix(in srgb, var(--mb-sand) 60%, transparent); }
+
+/* Stat bar photo, feathered into the stats */
+.meridian .mb-patient-context { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, .7fr); gap: 48px; }
+.meridian .mb-context-image { align-self: stretch; width: calc(100% + var(--mb-gutter)); height: calc(100% + 128px); min-height: 320px; margin: -64px 0 -64px calc(-1 * var(--mb-gutter)); object-fit: cover; object-position: center; mask-image: linear-gradient(90deg, #000 0%, #000 70%, transparent 100%); }
+.meridian .mb-patient-context .mb-context-features { grid-template-columns: 1fr; gap: 18px; padding-left: 32px; }
+.meridian .mb-patient-context .mb-context-features article { display: block; }
+.meridian .mb-context-stats { position: relative; }
+
+/* Meet Gordon, after the five steps */
+.meridian .mb-steps .mb-meet-gordon > img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; }
+.meridian .mb-meet-gordon .mb-meet-question { margin-bottom: 4px; color: var(--mb-jade); font: italic 500 18px/1.3 var(--mb-serif); }
+.meridian .mb-meet-gordon h3 { font: 500 28px/1.1 var(--mb-serif); }
+.meridian .mb-meet-gordon .mb-outline-button.button { min-height: 44px; margin-top: 18px; padding: 10px 16px; font-size: 14px; gap: 12px; }
+
+@media (max-width: 1250px) {
+  .meridian .mb-patient-context { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .meridian .mb-context-image { height: calc(100% + 64px); margin-bottom: 0; mask-image: linear-gradient(90deg, #000 70%, transparent 100%), linear-gradient(180deg, #000 75%, transparent 100%); mask-composite: intersect; }
+  .meridian .mb-patient-context .mb-context-features { grid-column: 1 / -1; padding: 28px 0 0; border-left: 0; border-top: 1px solid var(--mb-sand); grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+}
+@media (max-width: 760px) {
+  .meridian .mb-patient-context { grid-template-columns: 1fr; gap: 28px; }
+  .meridian .mb-context-image { width: calc(100% + 48px); height: 230px; min-height: 0; margin: -48px -24px 0; mask-image: linear-gradient(180deg, #000 60%, transparent 100%); }
+  .meridian .mb-patient-context .mb-context-features { grid-template-columns: 1fr; gap: 20px; }
+  .meridian .mb-patient-context .mb-context-features article { display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; }
+  .meridian .mb-country-select { justify-content: space-between; width: 100%; }
+}
+@media (max-width: 400px) {
+  .meridian .mb-context-image { width: calc(100% + 40px); margin: -48px -20px 0; }
+  .meridian .mb-patient-context .mb-context-features article { grid-template-columns: 1fr; gap: 4px; }
 }
